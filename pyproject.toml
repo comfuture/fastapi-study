@@ -1,0 +1,16 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "fastapi-study"
+version = "0.1.0"
+description = "for fastapi study purpose"
+requires-python = ">=3.10"
+dependencies = [
+  "python-dotenv",
+  "fastapi",
+  "jinja2",
+  "python-multipart",
+  "uvicorn"
+]
