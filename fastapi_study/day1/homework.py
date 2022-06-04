@@ -30,7 +30,7 @@ def has_many_queries(queries: dict = Depends(use_queries)):
 class Queries(BaseModel):
     """쿼리 파라메터 인풋"""
     name: Optional[str] = None
-    age: Optional[int] = 18
+    age: Optional[int] = 0
 
     @validator('age', pre=True)
     def validate_age(cls, value): # pylint: disable=no-self-argument
