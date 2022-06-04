@@ -10,21 +10,24 @@ Github 저장소에서 상단 [Code] 드롭다운 버튼을 눌러 'Create codes
 ### Case 2. Dev Containers
 
 Github Codespace가 아직 활성화 되지 않았다면 로컬 머신에 실행중인 docker를 이용하여 동일한 환경의 개발 컨테이너를 로컬에 구성할 수 있다.
-프로젝트를 열고 `^P` 'Remote-Containers: Reopen in Container' 를 선택한다.
+프로젝트를 열고 명령팔레트`⌘⇧P`에서 'Remote-Containers: Reopen in Container' 를 선택한다.
 
 참조: https://code.visualstudio.com/docs/remote/containers-tutorial
 
 ### Case 3. Local
 
-선호하는 virtualenvs 도구를 이용하여 python 3.10 을 구성하고 venv가 활성화된 상태에서 프로젝트를 연다.
+선호하는 virtualenvs 도구를 이용하여 python 3.10+ 을 구성하고 venv가 활성화된 상태에서 프로젝트를 연다.
 
 ## Installation
+
+의존성 관리는 [flit](https://flit.pypa.io/en/latest/) 을 이용한다.
+프로젝트 정보는 [PEP 517](https://peps.python.org/pep-0517/) 을 준수하는 `pyproject.toml` 을 이용한다.
+필수가 아니라면 가급적 flit.* 확장 메타데이터는 쓰지 않는다.
 
 ```bash
 $ pip install flit
 $ flit install
 ```
-
 
 ## CLI
 

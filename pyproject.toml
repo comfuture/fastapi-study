@@ -9,8 +9,17 @@ description = "for fastapi study purpose"
 requires-python = ">=3.10"
 dependencies = [
   "python-dotenv",
-  "fastapi",
-  "jinja2",
-  "python-multipart",
+  "fastapi >=0.78.0",
+  "jinja2 >=3.1.2",
+  "python-multipart >=0.0.5",
   "uvicorn"
 ]
+
+[project.optional-dependencies]
+test = [
+    "pytest >=2.7.3",
+    "pytest-asyncio >=0.18.3",
+]
+
+[project.scripts]
+flit = "flit:main"
