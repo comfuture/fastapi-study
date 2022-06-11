@@ -26,7 +26,7 @@ Github Codespace가 아직 활성화 되지 않았다면 로컬 머신에 실행
 
 ```bash
 $ pip install flit
-$ flit install
+$ flit install -s
 ```
 
 ## CLI
