@@ -16,7 +16,7 @@ def fastapi_app():
     # sqlite_file = tempfile.NamedTemporaryFile(suffix='.db')
     with tempfile.NamedTemporaryFile(suffix='.db') as sqlite_file:
         # sqlite_file = './test.db'
-        os.environ['DATABASE_DSN'] = f'sqlite:///{sqlite_file.name}'
+        os.environ['DATABASE_DSN'] = f'sqlite+aiosqlite:///{sqlite_file.name}'
         app = create_app()
         yield app
         # os.unlink(sqlite_file.name)
@@ -60,10 +60,20 @@ def test_user(client):
     assert 'name' in result.get('changes'), 'name 속성이 변경되지 않았습니다'
     assert result.get('changes')['name'] == new_name, 'name 속성이 변경되지 않았습니다'
 
+    # 변경 재검증
+    response = client.get(f'/user/{user_id}')
+    assert response.status_code == 200
+    result = response.json()
+    assert result.get('name') == new_name, 'name 속성이 변경되지 않았습니다'
+
     # 사용자 삭제
     response = client.delete(f'/user/{user_id}')
     assert response.status_code == 204, '사용자가 정상적으로 삭제되지 않았습니다'
 
+    # 삭제 재검증
+    response = client.get('/user/')
+    items = response.json().get('items')
+    assert len(items) == 0, '사용자가 삭제되지 않았습니다'
 
     # 벌크 생성, 목록 조회
     users = {}
@@ -75,7 +85,7 @@ def test_user(client):
         users[result.get('item_id')] = result.get('user')
 
     response = client.get('/user/')
-    items = response.json().get('users')
+    items = response.json().get('items')
     for user in items:
         user_id = user.get('id')
         assert users.get(user_id).get('name') == user.get('name')

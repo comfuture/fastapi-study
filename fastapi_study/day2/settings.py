@@ -6,7 +6,7 @@ from pydantic import BaseSettings, FileUrl, PostgresDsn, AnyUrl
 class Settings(BaseSettings):
     """local config"""
     # database_dsn: Union[FileUrl, PostgresDsn] = 'sqlite:///./test.db'
-    database_dsn: str = 'sqlite:///./test.db'
+    database_dsn: str = 'sqlite+aiosqlite:///./test.db'
 
     class Config:
         env_file = 'fastapi_study/day2/.env'
