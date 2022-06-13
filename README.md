@@ -1,4 +1,4 @@
-# fastapi study
+# fastapi study [![CI](https://github.com/comfuture/fastapi-study/actions/workflows/ci.yml/badge.svg)](https://github.com/comfuture/fastapi-study/actions/workflows/ci.yml)
 
 ## Prerequirements
 ### Case 1. Github Codespace
