@@ -18,7 +18,8 @@ def test_standalone_tasks(client):
     assert os.path.exists(filename)
     os.unlink(filename)
 
-def test_standalone_tasks(client):
+@pytest.mark.skip('fastapi는 background 를 리턴하지 않아도 태스크를 실행합니다')
+def test_returning_background_tasks(client):
     """실행되지 않는 스탠드얼론 `BackgroundTasks` 테스트"""
     response = client.get('/without-return')
     assert response.status_code == 202
