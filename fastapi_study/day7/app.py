@@ -17,6 +17,10 @@ class Resource(BaseModel):
     name: str = Field(title='resource name')
     tags: list[Tag] = Field(title='tags', default_factory=list,
                             contains={
+                                'type': 'object',
+                                'properties': {
+                                    name: {'type': 'string'} for name in _REQUIRED_KEYS
+                                },
                                 **Tag.schema(),
                                 'required': _REQUIRED_KEYS
                             },
@@ -34,7 +38,7 @@ app = FastAPI()
 
 @app.get('/')
 def list_resources():
-    ...
+    return Resource.schema()
 
 
 @app.post('/')
