@@ -21,7 +21,6 @@ class Resource(BaseModel):
                                 'properties': {
                                     name: {'type': 'string'} for name in _REQUIRED_KEYS
                                 },
-                                **Tag.schema(),
                                 'required': _REQUIRED_KEYS
                             },
                             description=f'it should have items that contains name={_REQUIRED_KEYS}',
